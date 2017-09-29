@@ -1,38 +1,48 @@
-import dict from '../config/default.json'
-
-export const replace = ($el, dict = dict, reverse) => {
-  let value = $el.value
-  for (let item of dict) {
-    const {right, wrong} = item
-    const newer = reverse ? right : wrong
-    const elder = reverse ? wrong : right
-    value = $el.value = value.replace(new RegExp(elder, 'g'), newer)
+import defaultDict from '../config/default.json'
+export default class IlliterateEditor {
+  constructor ($el, dict = defaultDict) {
+    this.$el = $el
+    this.dict = dict
+    this.flag = true
+    this.onCompositionstart = this.onCompositionstart.bind(this)
+    this.onCompositionend = this.onCompositionend.bind(this)
+    this.onInput = this.onInput.bind(this)
+    this.replace = this.replace.bind(this)
+    this.dispose = this.dispose.bind(this)
+    this.init = this.init.bind(this)
+    // auto init
+    this.init()
   }
-}
-
-export default ($el, dict, reverse) => {
-  let flag = true
-
-  const onCompositionstart = e => {
-     flag = false
+  onCompositionstart () {
+    this.flag = false
   }
-  const onCompositionend = e => {
-    flag = true
-    replace(e.target, dict, reverse)
+  onCompositionend () {
+    this.flag = true
+    this.replace()
   }
-  const onInput = e => {
-    flag && replace(e.target, dict, reverse)
+  onInput () {
+    this.flag && this.replace()
   }
-
-  $el.addEventListener('compositionstart', onCompositionstart)
-  $el.addEventListener('compositionend', onCompositionend)
-  $el.addEventListener('input', onInput)
-
-  return {
-    dispose() {
-      $el.removeEventListener('compositionstart', onCompositionstart)
-      $el.removeEventListener('compositionend', onCompositionend)
-      $el.removeEventListener('input', onInput)
+  replace () {
+    const {$el, dict} = this
+    let value = $el.value
+    for (const key in dict) {
+      const newer = dict[key]
+      const elder = key
+      value = value.replace(new RegExp(elder, 'g'), newer)
     }
+    $el.value = value
+  }
+  init () {
+    const {$el, onInput, onCompositionstart, onCompositionend} = this
+    $el.addEventListener('compositionstart', onCompositionstart)
+    $el.addEventListener('compositionend', onCompositionend)
+    $el.addEventListener('input', onInput)
+  }
+  dispose () {
+    const {$el, onInput, onCompositionstart, onCompositionend} = this
+    $el.removeEventListener('compositionstart', onCompositionstart)
+    $el.removeEventListener('compositionend', onCompositionend)
+    $el.removeEventListener('input', onInput)
   }
 }

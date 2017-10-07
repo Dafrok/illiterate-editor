@@ -227,7 +227,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "html,\nbody {\n  margin: 0;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np {\n  margin: 0;\n  padding: 0;\n  line-height: 1;\n}\nh1 {\n  font-size: 36px;\n}\nh2 {\n  font-size: 24px;\n  font-weight: normal;\n}\nheader {\n  padding: 10px;\n}\nh1,\nh2 {\n  margin-bottom: 10px;\n}\n.editor-container {\n  padding: 10px;\n  border: 1px solid #999;\n  box-shadow: 0 0 5px #999 inset;\n  position: fixed;\n  top: 120px;\n  bottom: 10px;\n  left: 10px;\n  right: 10px;\n}\n#editor {\n  border: 0;\n  padding: 0;\n  margin: 0;\n  outline: 0;\n  width: 100%;\n  height: 100%;\n  resize: none;\n}\n", ""]);
+exports.push([module.i, "html,\nbody {\n  margin: 0;\n  background: #39c;\n  color: #fff;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np {\n  margin: 0;\n  padding: 0;\n  line-height: 1;\n}\nh1 {\n  font-size: 36px;\n}\nh2 {\n  font-size: 24px;\n  font-weight: normal;\n}\np {\n  color: #ddd;\n}\nheader {\n  padding: 30px;\n}\nh1,\nh2 {\n  margin-bottom: 10px;\n}\n.editor-container {\n  background: #f2f2f2;\n  padding: 10px;\n  border: 1px solid #999;\n  box-shadow: 0 0 5px #999 inset;\n  margin: 30px;\n}\n#editor {\n  background: transparent;\n  border: 0;\n  padding: 0;\n  margin: 0;\n  outline: 0;\n  width: 100%;\n  resize: none;\n}\n", ""]);
 
 // exports
 
